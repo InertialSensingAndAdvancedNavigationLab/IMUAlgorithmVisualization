@@ -1,0 +1,17 @@
+{
+    "algorithm_name": "UnscentedKalmanFilter",
+    "description": "UKF算法的默认参数配置。",
+
+    "parameters": {
+        "motion_noise_scaling_factor": 0.05,
+        "motion_detection_threshold_ms2": 0.5,
+        "ukf_alpha": 0.01,
+        "ukf_beta": 2.0,
+        "ukf_kappa": 0.0
+    },
+
+    "initial_covariance_P0": {
+        "attitude_deg": 1.0,
+        "gyro_bias_dps": 0.01
+    }
+}

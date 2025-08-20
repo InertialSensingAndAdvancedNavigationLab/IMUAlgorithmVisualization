@@ -1,0 +1,23 @@
+{
+    "run_comment": "一次使用UKF算法在MH_01_easy序列上的标准测试",
+
+    "dataset_base_path": "./data",
+    "debug_output_base_dir": "./debug",
+    "sequences_to_process": [
+        "V2_03_difficult"
+    ],
+
+    "output_base_dir": "/mnt/d/中北大学惯性传感与先进导航实验室/IMU-GNSS/mahony_madwick/results",
+
+    "algorithm_to_run": {
+        "name": "AccelOnlyAhrs",
+        "config_file": "config/algorithms/ukf_default.json"
+    },
+
+    "imu_hardware_spec_file": "config/sensors/adis16448.json",
+
+    "initialization_method": {
+        "use_ground_truth": false,
+        "static_duration_sec": 1
+    }
+}
