@@ -1,5 +1,0 @@
-bin
-data
-obj
-debug/*
-!debug/*.py

@@ -1,0 +1,8 @@
+# IMU Visualizer Configuration
+
+# Subscribed Topics
+imu_topic: /imu0
+ground_truth_pose_topic: /ground_truth/pose
+
+# Visualization Parameters
+uncertainty_radius: 0.5 # Radius of the uncertainty disk for AccelOnly estimator

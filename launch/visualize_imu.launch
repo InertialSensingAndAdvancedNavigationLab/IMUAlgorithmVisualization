@@ -1,0 +1,16 @@
+<launch>
+
+    <!-- Load parameters from YAML file -->
+    <rosparam file="$(find imu_algorithm_visualization)/config/default.yaml" command="load" />
+
+    <!-- Start the dummy IMU publisher node (Commented out as we are using a rosbag) -->
+    <!-- <node pkg="imu_algorithm_visualization" type="dummy_imu_publisher" name="dummy_imu_publisher" output="screen"/> -->
+
+    <!-- Start the IMU visualizer node -->
+    <node pkg="imu_algorithm_visualization" type="imu_visualizer_node" name="imu_visualizer_node" output="screen"/>
+
+    
+
+    <!-- Start RViz with a pre-configured file -->
+    <node type="rviz" name="rviz" pkg="rviz" args="-d $(find imu_algorithm_visualization)/imu_visualization.rviz" />
+</launch>

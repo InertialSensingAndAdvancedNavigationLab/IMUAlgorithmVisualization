@@ -1,0 +1,36 @@
+<launch>
+
+    <!--
+    This launch file runs the complete visualization setup.
+    It plays two rosbags simultaneously: one with the raw sensor data,
+    and one with the ground truth pose data.
+    -->
+
+    <!-- Set use_sim_time for the entire ROS system -->
+    <param name="use_sim_time" value="true"/>
+
+    <!-- Arguments for the bag file paths -->
+    <arg name="sensor_bag"      default="/path/to/your/euroc_data.bag" 
+         doc="Path to the rosbag containing the raw sensor data (IMU, camera, etc.)"/>
+    <arg name="groundtruth_bag" default="/path/to/your/groundtruth.bag" 
+         doc="Path to the rosbag containing the ground truth pose data"/>
+
+    <!-- Load parameters from the config file -->
+    <rosparam file="$(find imu_algorithm_visualization)/config/default.yaml" command="load" />
+
+    <!-- Play the sensor data bag -->
+    <!-- The -clock argument is essential to publish the simulation time -->
+    <node pkg="rosbag" type="play" name="sensor_player" output="screen" required="true" args="--clock $(arg sensor_bag)"/>
+
+    <!-- Play the ground truth bag -->
+    <!-- Note: No -clock argument here as only one node should publish the clock -->
+    <node pkg="rosbag" type="play" name="groundtruth_player" output="screen" required="true"
+          args="$(arg groundtruth_bag)"/>
+
+    <!-- Start the IMU visualizer node -->
+    <node pkg="imu_algorithm_visualization" type="imu_visualizer_node" name="imu_visualizer_node" output="screen"/>
+
+    <!-- Start RViz with a pre-configured file -->
+    <node type="rviz" name="rviz" pkg="rviz" args="-d $(find imu_algorithm_visualization)/imu_visualization.rviz" />
+
+</launch>
