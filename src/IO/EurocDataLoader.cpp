@@ -5,6 +5,7 @@
 #include <iostream>
 #include <limits>
 #include <sstream>
+#include "math/CoordinateSystem.hpp"
 
 /**
  * @brief       默认构造函数
@@ -154,13 +155,10 @@ std::optional<ImuMeasurement> EurocDataLoader::readNext()
 
     data.timestamp = static_cast<double>(timestamp_ns) * 1e-9;
     
-    /// --- 坐标系转换: EuRoC IMU Original (RUF) -> Internal Compute (FRD) ---
-    /// 根据 COORDINATE_SYSTEMS.md v3.0 中的定义:
-    /// Internal.X (Fwd)  = IMU_Orig.Z (Fwd)
-    /// Internal.Y (Right) = IMU_Orig.X (Right)
-    /// Internal.Z (Down)  = -IMU_Orig.Y (Up)
-    data.angularVelocity << gyro_orig.z(), gyro_orig.x(), -gyro_orig.y();
-    data.linearAcceleration << accel_orig.z(), accel_orig.x(), -gyro_orig.y();
+    /// --- 坐标系转换: EuRoC IMU Original -> Internal Compute (FRD) ---
+    /// 使用中心化的坐标系管理器进行变换
+    data.angularVelocity = CoordinateSystemManager::C_internal_from_imu * gyro_orig;
+    data.linearAcceleration = CoordinateSystemManager::C_internal_from_imu * accel_orig;
 
     return data;
 }

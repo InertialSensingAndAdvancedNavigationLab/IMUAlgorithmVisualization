@@ -9,6 +9,21 @@
 /// 包含我们项目中的数学类型
 #include "math/Vector.hpp"
 #include "math/Quaternion.hpp"
+#include "math/Matrix.hpp"
+
+/**
+ * @struct      ImuToBodyTransform
+ * @brief       存储从IMU传感器坐标系到机体坐标系的变换配置
+**/
+struct ImuToBodyTransform
+{
+    /// @brief 变换方法: "predefined" 或 "matrix"
+    std::string method;
+    /// @brief 预定义的传感器坐标系格式 (例如 "RUF", "RDF")
+    std::string predefinedFormat;
+    /// @brief 从传感器到机体的旋转矩阵
+    Matrix3d rotationMatrix;
+};
 
 /**
  * @struct      RuntimeConfig
@@ -33,7 +48,8 @@ struct RuntimeConfig
     std::string algorithmConfigFile;
     /// @brief IMU硬件参数文件的路径
     std::string imuHardwareSpecFile;
-
+    /// @brief IMU到机体的坐标变换配置
+    ImuToBodyTransform imuToBodyTransform;
     /// @brief 是否使用真值进行初始化
     bool useGroundTruthForInit;
     /// @brief 若不使用真值，用于静态初始化的时间长度 (秒)
@@ -84,6 +100,20 @@ struct UkfAlgorithmConfig
 };
 
 /**
+ * @struct      EsEkfAhrsConfig
+ * @brief       存储 EsEkfAhrs (误差状态扩展卡尔曼滤波) 算法特有的超参数
+**/
+struct EsEkfAhrsConfig
+{
+    /// @brief 低动态检测阈值 (m/s^2)，低于此值时才使用加速度计进行修正
+    double lowDynamicThreshold;
+    /// @brief 初始姿态不确定性 (度)
+    double initialAttitudeUncertaintyDeg;
+    /// @brief 初始陀螺仪零偏不确定性 (度/秒)
+    double initialGyroBiasUncertaintyDps;
+};
+
+/**
  * @class       ConfigurationManager
  * @brief       负责加载、管理和提供所有配置信息的单例类
  *  @details     该类解析命令行参数以找到主配置文件，然后根据主配置文件
@@ -111,4 +141,6 @@ public:
     ImuHardwareConfig hardware;
     /// @brief UKF算法配置实例
     UkfAlgorithmConfig ukfConfig;
+    /// @brief EsEkfAhrs算法配置实例
+    EsEkfAhrsConfig esEkfAhrsConfig;
 };

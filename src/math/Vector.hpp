@@ -5,6 +5,13 @@
 #include <Eigen/Dense>
 
 /**
+ * @using       Vector2d
+ * @brief       定义一个二维双精度浮点型向量
+ *  @details     这是对 Eigen::Matrix<double, 2, 1> 的类型别名。
+ **/
+using Vector2d = Eigen::Vector2d;
+
+/**
  * @using       Vector3d
  * @brief       定义一个三维双精度浮点型向量
  *  @details     这是对 Eigen::Matrix<double, 3, 1> 的类型别名，用于在整个项目中

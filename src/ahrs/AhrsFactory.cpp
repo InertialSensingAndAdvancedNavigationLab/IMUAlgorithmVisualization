@@ -3,8 +3,9 @@
 
 /// 在这里包含所有具体的算法实现头文件
 #include "ahrs/DirectIntegrator.hpp"
-#include "ahrs/CalibratedIntegrator.hpp" // <-- 新增包含
-#include "ahrs/AccelOnlyAhrs.hpp" // <-- 新增包含
+#include "ahrs/CalibratedIntegrator.hpp"
+#include "ahrs/AccelOnlyAhrs.hpp"
+#include "ahrs/EsEkfAhrs.hpp"
 // #include "ahrs/UkfAlgorithm.hpp" // 未来会添加
 
 /**
@@ -30,10 +31,14 @@ std::unique_ptr<DefaultAhrs> AhrsFactory::create(const std::string& algorithmNam
     {
         /// 创建并返回 CalibratedIntegrator 的实例
         return std::make_unique<CalibratedIntegrator>();
-    }   
-    else if (algorithmName == "AccelOnlyAhrs") // <-- 新增分支
+    }
+    else if (algorithmName == "AccelOnlyAhrs")
     {
         return std::make_unique<AccelOnlyAhrs>();
+    }
+    else if (algorithmName == "ESEKF")
+    {
+        return std::make_unique<EsEkfAhrs>();
     }
     /// 如果名称是 "UKF" (未来)
     else if (algorithmName == "UKF")

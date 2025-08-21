@@ -13,6 +13,7 @@
 #include "IO/TumTrajectoryWriter.hpp"
 #include "ahrs/AhrsFactory.hpp"
 #include "ahrs/DefaultAhrs.hpp"
+#include "math/CoordinateSystem.hpp"
 
 // #include "ahrs/DirectIntegrator.hpp" // 未来会包含的算法
 // #include "ahrs/UkfAlgorithm.hpp"
@@ -81,6 +82,10 @@ int main()
     /// 打印加载成功的运行时配置
     printRuntimeConfig(configManager.runtime);
 
+    /// --- 定义固定的坐标系变换 ---
+    /// 根据 Readme.md，获取从 Internal (FRD) 系到 TUM/Viz (RDF) 系的旋转
+    const Quaternion q_viz_from_internal(CoordinateSystemManager::C_viz_from_internal);
+
     /// --- 数据处理主循环 ---
     /// 遍历配置文件中指定的所有数据序列
     for (const auto& sequenceName : configManager.runtime.sequencesToProcess)
@@ -140,9 +145,12 @@ int main()
             /// 只有在算法初始化完成后，我们收集的数据才有意义
             if(algorithm->isInitialized())
             {
-                Quaternion currentOrientation = algorithm->getOrientation();
+                /// 算法输出的姿态是从 Internal (FRD) 系到 World (ENU) 系的旋转, q_world_from_internal
+                Quaternion q_world_from_internal = algorithm->getOrientation();
                 Vector3d currentPosition = Vector3d::Zero();
-                estimatedTrajectory.push_back({imuDataOpt->timestamp, currentPosition, currentOrientation});
+                /// 在写入TUM文件前，必须将姿态转换到 TUM/Viz (RDF) 系, q_world_from_viz = q_world_from_internal * q_internal_from_viz
+                Quaternion q_world_from_viz = q_world_from_internal * q_viz_from_internal.inverse(); // q_internal_from_viz = q_viz_from_internal.inverse()
+                estimatedTrajectory.push_back({imuDataOpt->timestamp, currentPosition, q_world_from_viz});
             }
             
             /// 递增帧计数器

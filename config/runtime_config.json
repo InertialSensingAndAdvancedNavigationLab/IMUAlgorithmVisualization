@@ -10,11 +10,21 @@
     "output_base_dir": "/mnt/d/中北大学惯性传感与先进导航实验室/IMU-GNSS/mahony_madwick/results",
 
     "algorithm_to_run": {
-        "name": "AccelOnlyAhrs",
-        "config_file": "config/algorithms/ukf_default.json"
+        "name": "ESEKF",
+        "config_file": "config/algorithms/esekf_default.json"
     },
 
     "imu_hardware_spec_file": "config/sensors/adis16448.json",
+
+    "imu_to_body_transform": {
+        "method": "predefined",
+        "predefined_format": "RUF",
+        "rotation_matrix": [
+            [1.0, 0.0, 0.0],
+            [0.0, 1.0, 0.0],
+            [0.0, 0.0, 1.0]
+        ]
+    },
 
     "initialization_method": {
         "use_ground_truth": false,

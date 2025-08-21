@@ -1,55 +1,52 @@
-#
-# Winyunq Style Makefile for a C++ Project v1.3
-#
+# 编译器和标志
+CXX = g++
+CXXFLAGS = -std=c++17 -Wall -Wextra -g
+LDFLAGS =
 
-# --- Compiler and Flags ---
-# @brief The C++ compiler to be used.
-CXX := g++
-# @brief Compiler flags for compilation.
-CXXFLAGS := -std=c++17 -Wall -Wextra -g
-# @brief Include paths. We now add the system path for Eigen3.
-# The compiler will now search in our project's src, and the system's Eigen3 directory.
-INCLUDES := -I./src -I/usr/include/eigen3
-# @brief Linker flags.
-LDFLAGS :=
+# 目录
+SRC_DIR = src
+OBJ_DIR = obj
+BIN_DIR = bin
+TARGET = $(BIN_DIR)/ahrs_tester
 
-# --- Directories ---
-# @brief The directory for the final executable.
-BIN_DIR := bin
-# @brief The directory containing all source files (.cpp).
-SRC_ROOT_DIR := src
-# @brief The directory for object files (.o).
-OBJ_DIR := obj
+# 包含路径
+INCLUDES = -I./$(SRC_DIR) -I/usr/include/eigen3
 
-# --- Files and Executable ---
-# @brief The name of the final executable file.
-TARGET := $(BIN_DIR)/UKF
-# @brief Automatically find all .cpp source files in all subdirectories of SRC_ROOT_DIR.
-SRCS := $(shell find $(SRC_ROOT_DIR) -name '*.cpp')
-# @brief Generate object file names from source file names, placing them in OBJ_DIR.
-OBJS := $(patsubst $(SRC_ROOT_DIR)/%.cpp,$(OBJ_DIR)/%.o,$(SRCS))
+# 自动查找所有 C++ 源文件
+SRCS = $(shell find $(SRC_DIR) -name '*.cpp')
 
-# --- Recipes ---
+# 根据源文件自动生成目标文件路径
+# 例如: src/main.cpp -> obj/main.o
+OBJS = $(patsubst $(SRC_DIR)/%.cpp,$(OBJ_DIR)/%.o,$(SRCS))
 
-# @brief The default target, which is 'all'.
-.PHONY: all
+# 根据目标文件自动生成依赖文件路径
+# 例如: obj/main.o -> obj/main.d
+DEPS = $(OBJS:.o=.d)
+
+# 默认目标
 all: $(TARGET)
 
-# @brief The rule to link the final executable.
+# 链接可执行文件的规则
 $(TARGET): $(OBJS)
-	@mkdir -p $(BIN_DIR)
-	@echo "Linking executable: $@"
-	$(CXX) $(LDFLAGS) -o $@ $^
+	@echo "链接: $@"
+	@mkdir -p $(@D)
+	$(CXX) $(OBJS) -o $@ $(LDFLAGS)
 
-# @brief The rule to compile a single .cpp source file into an .o object file.
-$(OBJ_DIR)/%.o: $(SRC_ROOT_DIR)/%.cpp
-	@mkdir -p $(dir $@)
-	@echo "Compiling: $<"
-	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
+# 编译 .cpp 文件为 .o 文件的规则
+# -MMD -MP 会为每个源文件自动生成头文件依赖关系
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
+	@echo "编译: $<"
+	@mkdir -p $(@D)
+	$(CXX) $(CXXFLAGS) $(INCLUDES) -MMD -MP -c $< -o $@
 
-# @brief The rule to clean up generated files.
-.PHONY: clean
+# 清理生成的文件
 clean:
-	@echo "Cleaning up generated files..."
-	@rm -rf $(BIN_DIR) $(OBJ_DIR)
-	@echo "Cleanup complete."
+	@echo "正在清理..."
+	rm -rf $(OBJ_DIR) $(BIN_DIR)
+
+# 包含所有生成的依赖文件。
+# 前缀 '-' 告诉 make，如果文件不存在也不要报错。
+-include $(DEPS)
+
+# 伪目标
+.PHONY: all clean
