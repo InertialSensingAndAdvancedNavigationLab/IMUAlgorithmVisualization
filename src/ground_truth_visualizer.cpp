@@ -17,7 +17,8 @@ GroundTruthVisualizer::GroundTruthVisualizer(ros::NodeHandle& nh) : nh_(nh)
     ground_truth_sub_ = nh_.subscribe(ground_truth_topic_, 10, &GroundTruthVisualizer::groundTruthCallback, this);
 
     // 一个发布者用于发布复合形状的不同部分，使用不同的id
-    body_marker_pub_ = nh_.advertise<visualization_msgs::Marker>("visualization/ground_truth_body", 10);
+    // Latching (true) is enabled to keep the last message available for new subscribers.
+    body_marker_pub_ = nh_.advertise<visualization_msgs::Marker>("visualization/ground_truth_body", 1, true);
 }
 
 void GroundTruthVisualizer::groundTruthCallback(const geometry_msgs::PoseStamped::ConstPtr& msg)
@@ -30,7 +31,22 @@ void GroundTruthVisualizer::groundTruthCallback(const geometry_msgs::PoseStamped
         gt_transform.transform.translation.x = msg->pose.position.x;
     gt_transform.transform.translation.y = msg->pose.position.y;
     gt_transform.transform.translation.z = msg->pose.position.z;
-    gt_transform.transform.rotation = msg->pose.orientation;
+
+    // -- Gemini: Applying URF to FLU coordinate system correction --
+    // 从消息中获取原始姿态 (q_orig)
+    tf2::Quaternion q_original;
+    tf2::fromMsg(msg->pose.orientation, q_original);
+
+    // 定义一个修正四元数 (q_corr)，用于将 URF (上-右-前) 坐标系旋转到 FLU (前-左-上) 坐标系
+    // 这等效于围绕向量 (1, 0, 1) 旋转 180 度
+    tf2::Quaternion q_correction(0.70710678, 0.0, 0.70710678, 0.0);
+
+    // 将原始姿态右乘修正四元数，得到最终姿态 q_final = q_orig * q_corr
+    tf2::Quaternion q_final = q_original * q_correction;
+    q_final.normalize();
+
+    // 更新TF变换中的旋转
+    gt_transform.transform.rotation = tf2::toMsg(q_final);
     tf_broadcaster_.sendTransform(gt_transform);
 
     // 2. 发布复合形状的各个部分
