@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>IMUAlgorithmVisualization: include/ground_truth_visualizer.hpp 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">IMUAlgorithmVisualization
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.10.0 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>首页</span></a></li>
+      <li><a href="namespaces.html"><span>包</span></a></li>
+      <li><a href="annotated.html"><span>类</span></a></li>
+      <li class="current"><a href="files.html"><span>文件</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>文件列表</span></a></li>
+    </ul>
+  </div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">类</a> &#124;
+<a href="#namespaces">命名空间</a>  </div>
+  <div class="headertitle"><div class="title">ground_truth_visualizer.hpp 文件参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>定义GroundTruthVisualizer类, 负责可视化无人机的真值位姿。  
+<a href="#details">更多...</a></p>
+<div class="textblock"><code>#include &lt;ros/ros.h&gt;</code><br />
+<code>#include &lt;geometry_msgs/PoseStamped.h&gt;</code><br />
+<code>#include &lt;visualization_msgs/Marker.h&gt;</code><br />
+<code>#include &lt;tf2_ros/transform_broadcaster.h&gt;</code><br />
+<code>#include &lt;tf2/LinearMath/Quaternion.h&gt;</code><br />
+<code>#include &lt;tf2/LinearMath/Vector3.h&gt;</code><br />
+<code>#include &lt;tf2_geometry_msgs/tf2_geometry_msgs.h&gt;</code><br />
+<code>#include &lt;std_srvs/Trigger.h&gt;</code><br />
+<code>#include &lt;imu_algorithm_visualization/SetAttitude.h&gt;</code><br />
+<code>#include &lt;imu_algorithm_visualization/SetLocation.h&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+ground_truth_visualizer.hpp 的引用(Include)关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="ground__truth__visualizer_8hpp__incl.png" border="0" usemap="#ainclude_2ground__truth__visualizer_8hpp" alt=""/></div>
+<map name="ainclude_2ground__truth__visualizer_8hpp" id="ainclude_2ground__truth__visualizer_8hpp">
+<area shape="rect" title="定义GroundTruthVisualizer类, 负责可视化无人机的真值位姿。" alt="" coords="839,5,977,48"/>
+<area shape="rect" title=" " alt="" coords="5,104,78,131"/>
+<area shape="poly" title=" " alt="" coords="839,34,453,56,243,75,156,86,90,99,82,101,81,96,89,93,155,81,242,70,453,51,839,28"/>
+<area shape="rect" title=" " alt="" coords="101,104,313,131"/>
+<area shape="poly" title=" " alt="" coords="839,38,610,62,325,99,293,104,292,98,324,93,609,57,838,32"/>
+<area shape="rect" title=" " alt="" coords="336,96,467,139"/>
+<area shape="poly" title=" " alt="" coords="839,40,680,63,483,98,482,93,679,57,838,34"/>
+<area shape="rect" title=" " alt="" coords="491,104,696,131"/>
+<area shape="poly" title=" " alt="" coords="839,50,654,102,652,97,838,45"/>
+<area shape="rect" title=" " alt="" coords="720,104,902,131"/>
+<area shape="poly" title=" " alt="" coords="887,50,838,95,834,91,884,46"/>
+<area shape="rect" title=" " alt="" coords="925,104,1089,131"/>
+<area shape="poly" title=" " alt="" coords="933,46,983,91,980,95,929,50"/>
+<area shape="rect" title=" " alt="" coords="1113,96,1266,139"/>
+<area shape="poly" title=" " alt="" coords="975,46,1110,88,1109,93,973,51"/>
+<area shape="rect" title=" " alt="" coords="1291,104,1414,131"/>
+<area shape="poly" title=" " alt="" coords="978,36,1118,61,1279,93,1294,97,1293,102,1278,99,1117,66,977,42"/>
+<area shape="rect" title=" " alt="" coords="1439,96,1618,139"/>
+<area shape="poly" title=" " alt="" coords="978,33,1174,57,1424,93,1423,98,1173,62,977,38"/>
+<area shape="rect" title=" " alt="" coords="1643,96,1822,139"/>
+<area shape="poly" title=" " alt="" coords="978,30,1257,51,1439,70,1627,93,1627,98,1439,75,1257,57,977,35"/>
+</map>
+</div>
+</div>
+<p><a href="ground__truth__visualizer_8hpp_source.html">浏览源代码.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+类</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classimu__visualization_1_1_ground_truth_visualizer.html">imu_visualization::GroundTruthVisualizer</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
+命名空间</h2></td></tr>
+<tr class="memitem:namespaceimu__visualization" id="r_namespaceimu__visualization"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceimu__visualization.html">imu_visualization</a></td></tr>
+<tr class="memdesc:namespaceimu__visualization"><td class="mdescLeft">&#160;</td><td class="mdescRight">封装 IMU 可视化相关的功能 <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>定义GroundTruthVisualizer类, 负责可视化无人机的真值位姿。 </p>
+<dl class="section author"><dt>作者</dt><dd>Gemini </dd></dl>
+<dl class="section date"><dt>日期</dt><dd>2025-08-21 </dd></dl>
+</div></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
+</small></address>
+</body>
+</html>

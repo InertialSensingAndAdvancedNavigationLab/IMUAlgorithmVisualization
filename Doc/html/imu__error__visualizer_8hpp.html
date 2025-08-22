@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>IMUAlgorithmVisualization: include/imu_error_visualizer.hpp 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">IMUAlgorithmVisualization
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.10.0 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>首页</span></a></li>
+      <li><a href="namespaces.html"><span>包</span></a></li>
+      <li><a href="annotated.html"><span>类</span></a></li>
+      <li class="current"><a href="files.html"><span>文件</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>文件列表</span></a></li>
+    </ul>
+  </div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">类</a> &#124;
+<a href="#namespaces">命名空间</a> &#124;
+<a href="#typedef-members">类型定义</a>  </div>
+  <div class="headertitle"><div class="title">imu_error_visualizer.hpp 文件参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>定义ImuErrorVisualizer类, 对比真实与理想IMU读数并可视化误差。  
+<a href="#details">更多...</a></p>
+<div class="textblock"><code>#include &lt;ros/ros.h&gt;</code><br />
+<code>#include &lt;sensor_msgs/Imu.h&gt;</code><br />
+<code>#include &lt;geometry_msgs/PoseStamped.h&gt;</code><br />
+<code>#include &lt;geometry_msgs/AccelStamped.h&gt;</code><br />
+<code>#include &lt;geometry_msgs/Vector3Stamped.h&gt;</code><br />
+<code>#include &lt;visualization_msgs/Marker.h&gt;</code><br />
+<code>#include &lt;message_filters/subscriber.h&gt;</code><br />
+<code>#include &lt;message_filters/synchronizer.h&gt;</code><br />
+<code>#include &lt;message_filters/sync_policies/approximate_time.h&gt;</code><br />
+<code>#include &lt;tf2/LinearMath/Vector3.h&gt;</code><br />
+<code>#include &lt;tf2/LinearMath/Quaternion.h&gt;</code><br />
+<code>#include &lt;tf2_geometry_msgs/tf2_geometry_msgs.h&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+imu_error_visualizer.hpp 的引用(Include)关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="imu__error__visualizer_8hpp__incl.png" border="0" usemap="#ainclude_2imu__error__visualizer_8hpp" alt=""/></div>
+<map name="ainclude_2imu__error__visualizer_8hpp" id="ainclude_2imu__error__visualizer_8hpp">
+<area shape="rect" title="定义ImuErrorVisualizer类, 对比真实与理想IMU读数并可视化误差。" alt="" coords="1039,5,1244,32"/>
+<area shape="rect" title=" " alt="" coords="5,96,78,123"/>
+<area shape="poly" title=" " alt="" coords="1039,22,818,25,544,33,280,51,172,65,90,83,72,90,70,85,89,77,171,60,279,46,544,28,818,19,1038,17"/>
+<area shape="rect" title=" " alt="" coords="102,96,237,123"/>
+<area shape="poly" title=" " alt="" coords="1038,26,624,46,407,62,318,72,250,83,214,93,213,88,249,77,317,67,407,57,624,40,1038,21"/>
+<area shape="rect" title=" " alt="" coords="261,96,473,123"/>
+<area shape="poly" title=" " alt="" coords="1039,28,787,46,636,62,486,83,429,94,428,89,485,77,635,56,786,41,1038,22"/>
+<area shape="rect" title=" " alt="" coords="497,96,711,123"/>
+<area shape="poly" title=" " alt="" coords="1039,35,889,55,723,83,668,95,667,89,722,77,888,50,1038,30"/>
+<area shape="rect" title=" " alt="" coords="735,96,961,123"/>
+<area shape="poly" title=" " alt="" coords="1100,35,905,94,904,89,1099,30"/>
+<area shape="rect" title=" " alt="" coords="986,88,1116,131"/>
+<area shape="poly" title=" " alt="" coords="1130,35,1085,79,1081,75,1127,31"/>
+<area shape="rect" title=" " alt="" coords="1140,96,1327,123"/>
+<area shape="poly" title=" " alt="" coords="1157,31,1211,83,1207,87,1153,35"/>
+<area shape="rect" title=" " alt="" coords="1352,96,1553,123"/>
+<area shape="poly" title=" " alt="" coords="1187,30,1394,89,1392,94,1185,35"/>
+<area shape="rect" title=" " alt="" coords="1577,80,1725,139"/>
+<area shape="poly" title=" " alt="" coords="1245,27,1392,45,1562,77,1561,82,1391,51,1244,32"/>
+<area shape="rect" title=" " alt="" coords="1749,96,1913,123"/>
+<area shape="poly" title=" " alt="" coords="1245,22,1471,40,1605,55,1737,77,1780,88,1779,93,1736,83,1604,61,1471,45,1244,27"/>
+<area shape="rect" title=" " alt="" coords="1936,96,2118,123"/>
+<area shape="poly" title=" " alt="" coords="1245,19,1381,24,1551,34,1738,51,1925,77,1974,89,1973,94,1924,83,1737,56,1550,39,1380,29,1245,24"/>
+<area shape="rect" title=" " alt="" coords="2142,88,2296,131"/>
+<area shape="poly" title=" " alt="" coords="1245,20,1706,40,1951,56,2053,66,2130,77,2146,81,2145,86,2129,83,2052,72,1951,62,1706,45,1244,26"/>
+</map>
+</div>
+</div>
+<p><a href="imu__error__visualizer_8hpp_source.html">浏览源代码.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+类</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classimu__visualization_1_1_imu_error_visualizer.html">imu_visualization::ImuErrorVisualizer</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
+命名空间</h2></td></tr>
+<tr class="memitem:namespaceimu__visualization" id="r_namespaceimu__visualization"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceimu__visualization.html">imu_visualization</a></td></tr>
+<tr class="memdesc:namespaceimu__visualization"><td class="mdescLeft">&#160;</td><td class="mdescRight">封装 IMU 可视化相关的功能 <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+类型定义</h2></td></tr>
+<tr class="memitem:a38c3245c0ba3c7ca6b7449f37e2e8168" id="r_a38c3245c0ba3c7ca6b7449f37e2e8168"><td class="memItemLeft" align="right" valign="top">typedef message_filters::sync_policies::ApproximateTime&lt; geometry_msgs::PoseStamped, geometry_msgs::AccelStamped, sensor_msgs::Imu &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceimu__visualization.html#a38c3245c0ba3c7ca6b7449f37e2e8168">imu_visualization::MySyncPolicy</a></td></tr>
+<tr class="separator:a38c3245c0ba3c7ca6b7449f37e2e8168"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>定义ImuErrorVisualizer类, 对比真实与理想IMU读数并可视化误差。 </p>
+<dl class="section author"><dt>作者</dt><dd>Gemini </dd></dl>
+<dl class="section date"><dt>日期</dt><dd>2025-08-22 </dd></dl>
+</div></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
+</small></address>
+</body>
+</html>

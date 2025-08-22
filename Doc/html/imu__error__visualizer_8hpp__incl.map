@@ -1,0 +1,27 @@
+<map id="include/imu_error_visualizer.hpp" name="include/imu_error_visualizer.hpp">
+<area shape="rect" id="Node000001" title="定义ImuErrorVisualizer类, 对比真实与理想IMU读数并可视化误差。" alt="" coords="1039,5,1244,32"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,96,78,123"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1039,22,818,25,544,33,280,51,172,65,90,83,72,90,70,85,89,77,171,60,279,46,544,28,818,19,1038,17"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="102,96,237,123"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="1038,26,624,46,407,62,318,72,250,83,214,93,213,88,249,77,317,67,407,57,624,40,1038,21"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="261,96,473,123"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="1039,28,787,46,636,62,486,83,429,94,428,89,485,77,635,56,786,41,1038,22"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="497,96,711,123"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="1039,35,889,55,723,83,668,95,667,89,722,77,888,50,1038,30"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="735,96,961,123"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="1100,35,905,94,904,89,1099,30"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="986,88,1116,131"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="1130,35,1085,79,1081,75,1127,31"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="1140,96,1327,123"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="1157,31,1211,83,1207,87,1153,35"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="1352,96,1553,123"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="1187,30,1394,89,1392,94,1185,35"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="1577,80,1725,139"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="1245,27,1392,45,1562,77,1561,82,1391,51,1244,32"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="1749,96,1913,123"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="1245,22,1471,40,1605,55,1737,77,1780,88,1779,93,1736,83,1604,61,1471,45,1244,27"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="1936,96,2118,123"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="1245,19,1381,24,1551,34,1738,51,1925,77,1974,89,1973,94,1924,83,1737,56,1550,39,1380,29,1245,24"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="2142,88,2296,131"/>
+<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="1245,20,1706,40,1951,56,2053,66,2130,77,2146,81,2145,86,2129,83,2052,72,1951,62,1706,45,1244,26"/>
+</map>

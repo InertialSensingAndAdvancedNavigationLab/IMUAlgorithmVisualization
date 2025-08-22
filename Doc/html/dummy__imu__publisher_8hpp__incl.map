@@ -1,0 +1,9 @@
+<map id="include/dummy_imu_publisher.hpp" name="include/dummy_imu_publisher.hpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="59,5,280,32"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,80,78,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="149,35,78,74,76,70,146,30"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="102,80,237,107"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="172,33,172,64,167,64,167,33"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="261,80,318,107"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="192,30,257,69,254,74,189,35"/>
+</map>

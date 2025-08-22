@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>IMUAlgorithmVisualization: include/dummy_imu_publisher.hpp 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">IMUAlgorithmVisualization
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.10.0 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>首页</span></a></li>
+      <li><a href="namespaces.html"><span>包</span></a></li>
+      <li><a href="annotated.html"><span>类</span></a></li>
+      <li class="current"><a href="files.html"><span>文件</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>文件列表</span></a></li>
+    </ul>
+  </div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">dummy_imu_publisher.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="dummy__imu__publisher_8hpp.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef IMU_ALGORITHM_VISUALIZATION_DUMMY_IMU_PUBLISHER_HPP</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define IMU_ALGORITHM_VISUALIZATION_DUMMY_IMU_PUBLISHER_HPP</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;ros/ros.h&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;sensor_msgs/Imu.h&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;cmath&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceimu__visualization.html">imu_visualization</a></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>{</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="classimu__visualization_1_1_dummy_imu_publisher.html">   18</a></span><span class="keyword">class </span><a class="code hl_class" href="classimu__visualization_1_1_dummy_imu_publisher.html">DummyImuPublisher</a></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>{</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="classimu__visualization_1_1_dummy_imu_publisher.html#a3d054e9d911483a8db5c8a40ef5e4472">   25</a></span>    <a class="code hl_function" href="classimu__visualization_1_1_dummy_imu_publisher.html#a3d054e9d911483a8db5c8a40ef5e4472">DummyImuPublisher</a>(ros::NodeHandle&amp; nh);</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="classimu__visualization_1_1_dummy_imu_publisher.html#a3d2d95a72c6a3d8063375641c7befc41">   29</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classimu__visualization_1_1_dummy_imu_publisher.html#a3d2d95a72c6a3d8063375641c7befc41">run</a>();</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    ros::NodeHandle nodeHandle;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    ros::Publisher imuPublisher;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    ros::Rate loopRate;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    std::string imuFrameId;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>};</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>}  <span class="comment">// namespace imu_visualization</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">#endif  </span><span class="comment">// IMU_ALGORITHM_VISUALIZATION_DUMMY_IMU_PUBLISHER_HPP</span></div>
+<div class="ttc" id="aclassimu__visualization_1_1_dummy_imu_publisher_html"><div class="ttname"><a href="classimu__visualization_1_1_dummy_imu_publisher.html">imu_visualization::DummyImuPublisher</a></div><div class="ttdoc">发布模拟的 IMU 数据</div><div class="ttdef"><b>Definition</b> dummy_imu_publisher.hpp:19</div></div>
+<div class="ttc" id="aclassimu__visualization_1_1_dummy_imu_publisher_html_a3d054e9d911483a8db5c8a40ef5e4472"><div class="ttname"><a href="classimu__visualization_1_1_dummy_imu_publisher.html#a3d054e9d911483a8db5c8a40ef5e4472">imu_visualization::DummyImuPublisher::DummyImuPublisher</a></div><div class="ttdeci">DummyImuPublisher(ros::NodeHandle &amp;nh)</div><div class="ttdoc">构造函数</div></div>
+<div class="ttc" id="aclassimu__visualization_1_1_dummy_imu_publisher_html_a3d2d95a72c6a3d8063375641c7befc41"><div class="ttname"><a href="classimu__visualization_1_1_dummy_imu_publisher.html#a3d2d95a72c6a3d8063375641c7befc41">imu_visualization::DummyImuPublisher::run</a></div><div class="ttdeci">void run()</div><div class="ttdoc">运行发布循环</div></div>
+<div class="ttc" id="anamespaceimu__visualization_html"><div class="ttname"><a href="namespaceimu__visualization.html">imu_visualization</a></div><div class="ttdoc">封装 IMU 可视化相关的功能</div><div class="ttdef"><b>Definition</b> ahrs_pose_visualizer.hpp:16</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
+</small></address>
+</body>
+</html>

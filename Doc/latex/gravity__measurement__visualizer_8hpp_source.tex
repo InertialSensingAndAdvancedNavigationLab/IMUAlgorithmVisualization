@@ -1,0 +1,70 @@
+\doxysection{gravity\+\_\+measurement\+\_\+visualizer.\+hpp}
+\label{gravity__measurement__visualizer_8hpp_source}\index{include/gravity\_measurement\_visualizer.hpp@{include/gravity\_measurement\_visualizer.hpp}}
+\textbf{ 浏览该文件的文档.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#ifndef\ GRAVITY\_MEASUREMENT\_VISUALIZER\_HPP}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ GRAVITY\_MEASUREMENT\_VISUALIZER\_HPP}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <ros/ros.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <sensor\_msgs/Imu.h>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <geometry\_msgs/PoseStamped.h>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <geometry\_msgs/Vector3Stamped.h>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <visualization\_msgs/Marker.h>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <std\_srvs/Trigger.h>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <tf2/LinearMath/Quaternion.h>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <tf2/LinearMath/Vector3.h>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <tf2\_geometry\_msgs/tf2\_geometry\_msgs.h>}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{namespace\ }imu\_visualization}
+\DoxyCodeLine{00023\ \{}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{class\ }GravityMeasurementVisualizer}
+\DoxyCodeLine{00026\ \{}
+\DoxyCodeLine{00027\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00028\ \ \ \ \ GravityMeasurementVisualizer(ros::NodeHandle\&\ nh);}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{comment}{//\ Internal\ helper\ to\ start\ calibration}}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{void}\ startCalibration(\textcolor{keywordtype}{double}\ duration);}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{comment}{//\ Callbacks}}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{void}\ imuCallback(\textcolor{keyword}{const}\ sensor\_msgs::Imu::ConstPtr\&\ msg);}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{void}\ groundTruthCallback(\textcolor{keyword}{const}\ geometry\_msgs::PoseStamped::ConstPtr\&\ msg);}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{bool}\ calibrateCallback(std\_srvs::Trigger::Request\ \&req,\ std\_srvs::Trigger::Response\ \&res);}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{void}\ publishCalibratedGravity(\textcolor{keyword}{const}\ ros::TimerEvent\&\ event);}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{comment}{//\ ROS\ Handles}}
+\DoxyCodeLine{00041\ \ \ \ \ ros::NodeHandle\ nh\_;}
+\DoxyCodeLine{00042\ \ \ \ \ ros::Subscriber\ imu\_sub\_;}
+\DoxyCodeLine{00043\ \ \ \ \ ros::Subscriber\ ground\_truth\_sub\_;}
+\DoxyCodeLine{00044\ \ \ \ \ ros::Publisher\ gravity\_arrow\_pub\_;}
+\DoxyCodeLine{00045\ \ \ \ \ ros::Publisher\ calibrated\_gravity\_pub\_;}
+\DoxyCodeLine{00046\ \ \ \ \ ros::ServiceServer\ calibrate\_service\_;}
+\DoxyCodeLine{00047\ \ \ \ \ ros::Timer\ pub\_timer\_;}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{comment}{//\ State}}
+\DoxyCodeLine{00050\ \ \ \ \ geometry\_msgs::Pose\ latest\_ground\_truth\_pose\_;}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{bool}\ ground\_truth\_received\_\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00052\ \ \ \ \ tf2::Vector3\ calibrated\_gravity\_;}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{comment}{//\ Calibration-\/related\ state}}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{bool}\ auto\_calibration\_has\_run\_;}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{double}\ auto\_calibrate\_duration\_param\_;}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{bool}\ is\_calibrating\_;}
+\DoxyCodeLine{00058\ \ \ \ \ ros::Time\ calibration\_start\_time\_;}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{double}\ calibration\_duration\_;}
+\DoxyCodeLine{00060\ \ \ \ \ std::vector<geometry\_msgs::Vector3>\ gravity\_samples\_;}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{comment}{//\ Topics}}
+\DoxyCodeLine{00063\ \ \ \ \ std::string\ imu\_topic\_;}
+\DoxyCodeLine{00064\ \ \ \ \ std::string\ ground\_truth\_topic\_;}
+\DoxyCodeLine{00065\ \};}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \}\ \textcolor{comment}{//\ namespace\ imu\_visualization}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ GRAVITY\_MEASUREMENT\_VISUALIZER\_HPP}}
+
+\end{DoxyCode}

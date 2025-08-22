@@ -1,0 +1,42 @@
+\doxysection{ahrs\+\_\+pose\+\_\+visualizer.\+hpp}
+\label{ahrs__pose__visualizer_8hpp_source}\index{include/ahrs\_pose\_visualizer.hpp@{include/ahrs\_pose\_visualizer.hpp}}
+\textbf{ 浏览该文件的文档.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#ifndef\ AHRS\_POSE\_VISUALIZER\_NODE\_HPP}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ AHRS\_POSE\_VISUALIZER\_NODE\_HPP}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <ros/ros.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <geometry\_msgs/PoseStamped.h>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <visualization\_msgs/Marker.h>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <tf2\_ros/transform\_broadcaster.h>}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{namespace\ }imu\_visualization}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }AhrsPoseVisualizerNode}
+\DoxyCodeLine{00019\ \{}
+\DoxyCodeLine{00020\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00021\ \ \ \ \ AhrsPoseVisualizerNode(ros::NodeHandle\&\ nh);}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{void}\ poseCallback(\textcolor{keyword}{const}\ geometry\_msgs::PoseStamped::ConstPtr\&\ msg);}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{void}\ groundTruthPoseCallback(\textcolor{keyword}{const}\ geometry\_msgs::PoseStamped::ConstPtr\&\ msg);}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ ros::NodeHandle\ nh\_;}
+\DoxyCodeLine{00028\ \ \ \ \ ros::Subscriber\ pose\_sub\_;}
+\DoxyCodeLine{00029\ \ \ \ \ ros::Subscriber\ ground\_truth\_pose\_sub\_;}
+\DoxyCodeLine{00030\ \ \ \ \ ros::Publisher\ model\_pub\_;}
+\DoxyCodeLine{00031\ \ \ \ \ tf2\_ros::TransformBroadcaster\ tf\_broadcaster\_;}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{comment}{//\ For\ position\ following}}
+\DoxyCodeLine{00034\ \ \ \ \ geometry\_msgs::Pose\ latest\_ground\_truth\_pose\_;}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{bool}\ ground\_truth\_pose\_received\_;}
+\DoxyCodeLine{00036\ \ \ \ \ std::string\ child\_frame\_id\_;}
+\DoxyCodeLine{00037\ \};}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \}\ \textcolor{comment}{//\ namespace\ imu\_visualization}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ AHRS\_POSE\_VISUALIZER\_NODE\_HPP}}
+
+\end{DoxyCode}

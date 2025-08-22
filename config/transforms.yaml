@@ -1,0 +1,11 @@
+# Coordinate system transformations
+# These are used to convert between different conventions (e.g., dataset's native to ROS FLU)
+
+# URF (Up-Right-Forward) to FLU (Forward-Left-Up) correction quaternion
+# This is applied to the ground truth pose to align it with ROS FLU convention.
+# (x=0.70710678, y=0.0, z=0.70710678, w=0.0)
+urf_to_flu_quat:
+  x: 0.70710678
+  y: 0.0
+  z: 0.70710678
+  w: 0.0

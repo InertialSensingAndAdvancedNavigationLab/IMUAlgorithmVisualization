@@ -1,0 +1,61 @@
+\doxysection{ground\+\_\+truth\+\_\+visualizer.\+hpp}
+\label{ground__truth__visualizer_8hpp_source}\index{include/ground\_truth\_visualizer.hpp@{include/ground\_truth\_visualizer.hpp}}
+\textbf{ 浏览该文件的文档.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#ifndef\ GROUND\_TRUTH\_VISUALIZER\_HPP}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ GROUND\_TRUTH\_VISUALIZER\_HPP}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <ros/ros.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <geometry\_msgs/PoseStamped.h>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <visualization\_msgs/Marker.h>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <tf2\_ros/transform\_broadcaster.h>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <tf2/LinearMath/Quaternion.h>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <tf2/LinearMath/Vector3.h>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <tf2\_geometry\_msgs/tf2\_geometry\_msgs.h>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <std\_srvs/Trigger.h>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <imu\_algorithm\_visualization/SetAttitude.h>}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <imu\_algorithm\_visualization/SetLocation.h>}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{namespace\ }imu\_visualization}
+\DoxyCodeLine{00023\ \{}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{class\ }GroundTruthVisualizer}
+\DoxyCodeLine{00026\ \{}
+\DoxyCodeLine{00027\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00028\ \ \ \ \ GroundTruthVisualizer(ros::NodeHandle\&\ nh);}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{void}\ groundTruthCallback(\textcolor{keyword}{const}\ geometry\_msgs::PoseStamped::ConstPtr\&\ msg);}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{comment}{//\ Service\ Callbacks}}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{bool}\ setAttitudeCallback(imu\_algorithm\_visualization::SetAttitude::Request\&\ req,\ imu\_algorithm\_visualization::SetAttitude::Response\&\ res);}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{bool}\ setLocationCallback(imu\_algorithm\_visualization::SetLocation::Request\&\ req,\ imu\_algorithm\_visualization::SetLocation::Response\&\ res);}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{bool}\ resetPoseCallback(std\_srvs::Trigger::Request\&\ req,\ std\_srvs::Trigger::Response\&\ res);}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ ros::NodeHandle\ nh\_;}
+\DoxyCodeLine{00039\ \ \ \ \ ros::Subscriber\ ground\_truth\_sub\_;}
+\DoxyCodeLine{00040\ \ \ \ \ ros::Publisher\ body\_marker\_pub\_;}
+\DoxyCodeLine{00041\ \ \ \ \ ros::Publisher\ down\_vector\_marker\_pub\_;}
+\DoxyCodeLine{00042\ \ \ \ \ ros::Publisher\ forward\_arrow\_marker\_pub\_;}
+\DoxyCodeLine{00043\ \ \ \ \ tf2\_ros::TransformBroadcaster\ tf\_broadcaster\_;}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{comment}{//\ Service\ Servers}}
+\DoxyCodeLine{00046\ \ \ \ \ ros::ServiceServer\ set\_attitude\_service\_;}
+\DoxyCodeLine{00047\ \ \ \ \ ros::ServiceServer\ set\_location\_service\_;}
+\DoxyCodeLine{00048\ \ \ \ \ ros::ServiceServer\ reset\_pose\_service\_;}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ std::string\ ground\_truth\_topic\_;}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{comment}{//\ Locked\ pose\ state}}
+\DoxyCodeLine{00053\ \ \ \ \ geometry\_msgs::Pose\ locked\_pose\_;}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{bool}\ attitude\_is\_locked\_;}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{bool}\ position\_is\_locked\_;}
+\DoxyCodeLine{00056\ \};}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \}\ \textcolor{comment}{//\ namespace\ imu\_visualization}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ GROUND\_TRUTH\_VISUALIZER\_HPP}}
+
+\end{DoxyCode}

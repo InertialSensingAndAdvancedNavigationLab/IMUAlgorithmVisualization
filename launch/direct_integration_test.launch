@@ -1,0 +1,42 @@
+<launch>
+
+    <!--
+    This launch file tests the direct quaternion integration AHRS.
+    -->
+
+    <!-- Set use_sim_time for the entire ROS system -->
+    <param name="use_sim_time" value="true"/>
+
+    <!-- Bag file paths -->
+    <arg name="sensor_bag"      default="/mnt/d/Ubuntu20ROS1/Euroc_ws/MH_04_difficult.bag" />
+    <arg name="groundtruth_bag" default="/mnt/d/Ubuntu20ROS1/Euroc_ws/MH_04_difficult_true.bag" />
+
+    <!-- Static transform from body to imu0 frame -->
+    <node pkg="tf" type="static_transform_publisher" name="body_to_imu0_broadcaster"
+          args="0 0 0 0 0 0 ground_truth_body imu0 100" />
+
+    <!-- Play the rosbags -->
+    <node pkg="rosbag" type="play" name="sensor_player" output="screen" required="true" args="--clock $(arg sensor_bag)"/>
+    <node pkg="rosbag" type="play" name="groundtruth_player" output="screen" required="true"
+          args="$(arg groundtruth_bag)"/>
+
+    <!--
+    ======================================
+    === ALGORITHM & VISUALIZATION NODES ===
+    ======================================
+    -->
+
+    <!-- 1. Ground Truth Visualizer (for ground truth model and AHRS initialization) -->
+    <node pkg="imu_algorithm_visualization" type="ground_truth_visualizer_node" name="ground_truth_visualizer_node" output="screen"/>
+
+    <!-- 2. AHRS Algorithm Nodes -->
+    <node pkg="ahrs_algorithms" type="imu_corrector_node" name="imu_corrector_node" output="screen"/>
+    <node pkg="ahrs_algorithms" type="quaternion_integrator_node" name="quaternion_integrator_node" output="screen"/>
+
+    <!-- 3. AHRS Pose Visualizer (for the blue drone model) -->
+    <node pkg="imu_algorithm_visualization" type="ahrs_pose_visualizer_node" name="ahrs_pose_visualizer_node" output="screen"/>
+
+    <!-- 4. RViz -->
+    <node type="rviz" name="rviz" pkg="rviz" args="-d $(find imu_algorithm_visualization)/rviz/ahrs_comparison.rviz" />
+
+</launch>

@@ -6,11 +6,10 @@ Panels:
       Expanded:
         - /Global Options1
         - /TF1
+        - /MarkerArray1
         - /Marker1
-        - /Marker2
-        - /Marker3
       Splitter Ratio: 0.5
-    Tree Height: 641
+    Tree Height: 741
   - Class: rviz/Selection
     Name: Selection
   - Class: rviz/Tool Properties
@@ -53,7 +52,6 @@ Visualization Manager:
       Frame Timeout: 15
       Frames:
         All Enabled: true
-        accel_only_body:{Value: true}
         ground_truth_body: {Value: true}
         world: {Value: true}
       Marker Scale: 0.3
@@ -63,43 +61,23 @@ Visualization Manager:
       Show Names: true
       Tree:
         world:
-          ground_truth_body: {accel_only_body: {}}
+          ground_truth_body: {}
       Update Interval: 0
       Value: true
-    - Alpha: 1
-      Class: rviz/Marker
+    - Class: rviz/Marker
       Enabled: true
-      Marker Topic: /visualization/drone_model
-      Name: DroneModel
+      Marker Topic: /visualization/ground_truth_body
+      Name: Drone Body
       Namespaces:
-        drone_model: true
+        drone_body: true
       Queue Size: 100
       Value: true
-    - Alpha: 1
-      Class: rviz/Marker
+    - Class: rviz/MarkerArray
       Enabled: true
-      Marker Topic: /visualization/true_attitude
-      Name: TrueAttitudeArrow
+      Marker Topic: /visualization/attitude_error
+      Name: AttitudeError
       Namespaces:
-        true_attitude_arrow: true
-      Queue Size: 100
-      Value: true
-    - Alpha: 1
-      Class: rviz/Marker
-      Enabled: true
-      Marker Topic: /visualization/accel_uncertainty
-      Name: AccelUncertaintySphere
-      Namespaces:
-        accel_uncertainty_sphere: true
-      Queue Size: 100
-      Value: true
-    - Alpha: 1
-      Class: rviz/Marker
-      Enabled: true
-      Marker Topic: /visualization/trajectory
-      Name: Trajectory
-      Namespaces:
-        trajectory: true
+        attitude_error: true
       Queue Size: 100
       Value: true
   Enabled: true
@@ -126,20 +104,20 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 15.8332
+      Distance: 4.0
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.06
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: -0.334191
-        Y: 2.23994
-        Z: 1.5503
+        X: 0
+        Y: 0
+        Z: 0
       Name: Current View
       Near Clip Distance: 0.01
-      Pitch: 0.479797
-      Target Frame: <Fixed Frame>
+      Pitch: 0.4
+      Target Frame: ground_truth_body
       Value: Orbit (rviz)
-      Yaw: 5.46856
+      Yaw: 5.4
     Saved: ~

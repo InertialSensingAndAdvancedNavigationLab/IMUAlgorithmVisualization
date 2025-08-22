@@ -9,7 +9,8 @@
 namespace imu_visualization
 {
 
-GroundTruthVisualizer::GroundTruthVisualizer(ros::NodeHandle& nh) : nh_(nh)
+GroundTruthVisualizer::GroundTruthVisualizer(ros::NodeHandle& nh) 
+    : nh_(nh), attitude_is_locked_(false), position_is_locked_(false)
 {
     ros::NodeHandle nh_private("~");
     nh_private.param<std::string>("ground_truth_pose_topic", ground_truth_topic_, "/ground_truth/pose");
@@ -19,18 +20,32 @@ GroundTruthVisualizer::GroundTruthVisualizer(ros::NodeHandle& nh) : nh_(nh)
     // 一个发布者用于发布复合形状的不同部分，使用不同的id
     // Latching (true) is enabled to keep the last message available for new subscribers.
     body_marker_pub_ = nh_.advertise<visualization_msgs::Marker>("visualization/ground_truth_body", 1, true);
+
+    // Initialize service servers
+    set_attitude_service_ = nh_.advertiseService("set_attitude", &GroundTruthVisualizer::setAttitudeCallback, this);
+    set_location_service_ = nh_.advertiseService("set_location", &GroundTruthVisualizer::setLocationCallback, this);
+    reset_pose_service_ = nh_.advertiseService("reset_pose", &GroundTruthVisualizer::resetPoseCallback, this);
 }
 
 void GroundTruthVisualizer::groundTruthCallback(const geometry_msgs::PoseStamped::ConstPtr& msg)
 {
+    // Determine current pose based on lock flags
+    geometry_msgs::Pose current_pose = msg->pose;
+    if (attitude_is_locked_) {
+        current_pose.orientation = locked_pose_.orientation;
+    }
+    if (position_is_locked_) {
+        current_pose.position = locked_pose_.position;
+    }
+
     // 1. 发布TF变换
     geometry_msgs::TransformStamped gt_transform;
     gt_transform.header.stamp = msg->header.stamp;
     gt_transform.header.frame_id = "world";
     gt_transform.child_frame_id = "ground_truth_body";
-        gt_transform.transform.translation.x = msg->pose.position.x;
-    gt_transform.transform.translation.y = msg->pose.position.y;
-    gt_transform.transform.translation.z = msg->pose.position.z;
+    gt_transform.transform.translation.x = current_pose.position.x;
+    gt_transform.transform.translation.y = current_pose.position.y;
+    gt_transform.transform.translation.z = current_pose.position.z;
 
     // -- Gemini: Applying URF to FLU coordinate system correction --
     // 从消息中获取原始姿态 (q_orig)
@@ -109,6 +124,36 @@ void GroundTruthVisualizer::groundTruthCallback(const geometry_msgs::PoseStamped
     forward_arrow.color.g = 0.0;
     forward_arrow.color.b = 0.0;
     body_marker_pub_.publish(forward_arrow);
+}
+
+bool GroundTruthVisualizer::setAttitudeCallback(imu_algorithm_visualization::SetAttitude::Request& req, imu_algorithm_visualization::SetAttitude::Response& res)
+{
+    locked_pose_.orientation = req.attitude;
+    attitude_is_locked_ = true;
+    res.success = true;
+    res.message = "Attitude locked.";
+    ROS_INFO("GroundTruthVisualizer: Attitude locked to [%.2f, %.2f, %.2f, %.2f]", req.attitude.x, req.attitude.y, req.attitude.z, req.attitude.w);
+    return true;
+}
+
+bool GroundTruthVisualizer::setLocationCallback(imu_algorithm_visualization::SetLocation::Request& req, imu_algorithm_visualization::SetLocation::Response& res)
+{
+    locked_pose_.position = req.location;
+    position_is_locked_ = true;
+    res.success = true;
+    res.message = "Location locked.";
+    ROS_INFO("GroundTruthVisualizer: Location locked to [%.2f, %.2f, %.2f]", req.location.x, req.location.y, req.location.z);
+    return true;
+}
+
+bool GroundTruthVisualizer::resetPoseCallback(std_srvs::Trigger::Request& req, std_srvs::Trigger::Response& res)
+{
+    attitude_is_locked_ = false;
+    position_is_locked_ = false;
+    res.success = true;
+    res.message = "Pose unlocked, following ground truth.";
+    ROS_INFO("GroundTruthVisualizer: Pose unlocked.");
+    return true;
 }
 
 } // namespace imu_visualization

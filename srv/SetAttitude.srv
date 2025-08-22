@@ -1,0 +1,4 @@
+geometry_msgs/Quaternion attitude
+---
+bool success
+string message

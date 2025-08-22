@@ -9,12 +9,25 @@ find_package(catkin REQUIRED COMPONENTS
   tf2
   tf2_ros
   tf2_geometry_msgs
+  message_generation
+  std_srvs
+)
+
+add_service_files(
+  FILES
+  SetAttitude.srv
+  SetLocation.srv
+)
+
+generate_messages(
+  DEPENDENCIES
+  geometry_msgs
 )
 
 catkin_package(
   INCLUDE_DIRS include
   # LIBRARIES imu_algorithm_visualization
-  CATKIN_DEPENDS roscpp sensor_msgs visualization_msgs geometry_msgs tf2 tf2_ros tf2_geometry_msgs
+  CATKIN_DEPENDS roscpp sensor_msgs visualization_msgs geometry_msgs tf2 tf2_ros tf2_geometry_msgs message_runtime std_srvs
   # DEPENDS system_lib
 )
 
@@ -52,5 +65,29 @@ add_executable(gravity_measurement_visualizer_node
   src/gravity_measurement_visualizer.cpp
 )
 target_link_libraries(gravity_measurement_visualizer_node
+  ${catkin_LIBRARIES}
+)
+
+add_executable(imu_error_visualizer_node
+  src/imu_error_visualizer_node.cpp
+  src/imu_error_visualizer.cpp
+)
+target_link_libraries(imu_error_visualizer_node
+  ${catkin_LIBRARIES}
+)
+
+add_executable(attitude_error_visualizer_node
+  src/attitude_error_visualizer_node.cpp
+  src/attitude_error_visualizer.cpp
+)
+target_link_libraries(attitude_error_visualizer_node
+  ${catkin_LIBRARIES}
+)
+
+add_executable(ahrs_pose_visualizer_node
+  src/ahrs_pose_visualizer_node.cpp
+  src/ahrs_pose_visualizer.cpp
+)
+target_link_libraries(ahrs_pose_visualizer_node
   ${catkin_LIBRARIES}
 )
