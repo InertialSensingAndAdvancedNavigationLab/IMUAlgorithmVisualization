@@ -30,8 +30,8 @@
     <node pkg="imu_algorithm_visualization" type="ground_truth_visualizer_node" name="ground_truth_visualizer_node" output="screen"/>
 
     <!-- 2. AHRS Algorithm Nodes -->
-    <node pkg="ahrs_algorithms" type="imu_corrector_node" name="imu_corrector_node" output="screen"/>
-    <node pkg="ahrs_algorithms" type="quaternion_integrator_node" name="quaternion_integrator_node" output="screen"/>
+    <node pkg="quaternion_integrator" type="imu_corrector_node" name="imu_corrector_node" output="screen"/>
+    <node pkg="quaternion_integrator" type="quaternion_integrator_node" name="quaternion_integrator_node" output="screen"/>
 
     <!-- 3. AHRS Pose Visualizer (for the blue drone model) -->
     <node pkg="imu_algorithm_visualization" type="ahrs_pose_visualizer_node" name="ahrs_pose_visualizer_node" output="screen"/>

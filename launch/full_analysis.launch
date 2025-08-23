@@ -44,13 +44,13 @@
     </node>
 
     <!-- 3. IMU Corrector Node (for bias/drift removal, if any) -->
-    <node pkg="ahrs_algorithms" type="imu_corrector_node" name="imu_corrector_node" output="screen">
+    <node pkg="quaternion_integrator" type="imu_corrector_node" name="imu_corrector_node" output="screen">
         <remap from="/imu0" to="/mav0/imu0"/>
         <remap from="/imu/corrected" to="/imu/corrected"/> <!-- Output topic -->
     </node>
 
     <!-- 4. Quaternion Integrator Node (AHRS algorithm) -->
-    <node pkg="ahrs_algorithms" type="quaternion_integrator_node" name="quaternion_integrator_node" output="screen">
+    <node pkg="quaternion_integrator" type="quaternion_integrator_node" name="quaternion_integrator_node" output="screen">
         <remap from="/imu/corrected" to="/imu/corrected"/>
         <remap from="/ground_truth/pose" to="/mav0/state_groundtruth_estimate0/pose"/>
     </node>
