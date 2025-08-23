@@ -1,0 +1,5 @@
+geometry_msgs/PoseStamped ground_truth_pose
+---
+float64 angular_error_radians
+bool success
+string message
