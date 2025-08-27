@@ -16,6 +16,56 @@
 -   提供用于重力标定和数据模拟的节点。
 -   可通过ROS参数和启动文件进行高度配置。
 
+## 🌊 工作流程
+此图表展示了 `IMUAlgorithmVisualization` 软件包中不同节点之间的数据流。
+
+```mermaid
+graph TD
+    subgraph "数据源"
+        DataSourceIMU[IMU 数据, 例如 /imu0]
+        DataSourceGroundTruth[地面真值位姿, 例如 /ground_truth/pose]
+        DataSourceAHRS[AHRS 输出, 例如 /ahrs/pose]
+        DataSourceGroundTruthAccel[地面真值加速度, 例如 /ground_truth/accel]
+    end
+
+    subgraph "IMU 算法可视化节点"
+        A(ground_truth_visualizer)
+        B(imu_visualizer)
+        C(ahrs_pose_visualizer)
+        D(gravity_measurement_visualizer)
+        E(attitude_error_visualizer)
+        F(imu_error_visualizer)
+    end
+
+    subgraph "可视化终端"
+        RVIZ(RViz)
+    end
+
+    DataSourceGroundTruth --> A;
+    DataSourceIMU --> B;
+    DataSourceGroundTruth --> B;
+    DataSourceAHRS --> C;
+    DataSourceGroundTruth --> C;
+    DataSourceIMU --> D;
+    DataSourceGroundTruth --> D;
+
+    D -- "/calibration/gravity_vector" --> E;
+    DataSourceIMU --> E;
+    DataSourceGroundTruth --> E;
+
+    D -- "/calibration/gravity_vector" --> F;
+    DataSourceIMU --> F;
+    DataSourceGroundTruth --> F;
+    DataSourceGroundTruthAccel --> F
+
+    A -- "visualization/ground_truth_body" --> RVIZ;
+    B -- "visualization/*" --> RVIZ;
+    C -- "/visualization/ahrs_drone" --> RVIZ;
+    D -- "visualization/measured_gravity" --> RVIZ;
+    E -- "visualization/attitude_error" --> RVIZ;
+    F -- "visualization/imu_error" --> RVIZ;
+```
+
 ## 📦 安装与使用
 
 1.  **先决条件**:

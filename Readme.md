@@ -16,6 +16,56 @@ A ROS package designed to visualize various IMU (Inertial Measurement Unit) prop
 -   Provides nodes for gravity calibration and data simulation.
 -   Highly configurable through ROS parameters and launch files.
 
+## 🌊 Workflow
+This chart illustrates the data flow between the different nodes in the `IMUAlgorithmVisualization` package.
+
+```mermaid
+graph TD
+    subgraph "Data Sources"
+        DataSourceIMU[IMU Data e.g., /imu0]
+        DataSourceGroundTruth[Ground Truth Pose e.g., /ground_truth/pose]
+        DataSourceAHRS[AHRS Output e.g., /ahrs/pose]
+        DataSourceGroundTruthAccel[Ground Truth Accel e.g., /ground_truth/accel]
+    end
+
+    subgraph "IMU Algorithm Visualization Nodes"
+        A(ground_truth_visualizer)
+        B(imu_visualizer)
+        C(ahrs_pose_visualizer)
+        D(gravity_measurement_visualizer)
+        E(attitude_error_visualizer)
+        F(imu_error_visualizer)
+    end
+
+    subgraph "Visualization Sink"
+        RVIZ(RViz)
+    end
+
+    DataSourceGroundTruth --> A;
+    DataSourceIMU --> B;
+    DataSourceGroundTruth --> B;
+    DataSourceAHRS --> C;
+    DataSourceGroundTruth --> C;
+    DataSourceIMU --> D;
+    DataSourceGroundTruth --> D;
+
+    D -- "/calibration/gravity_vector" --> E;
+    DataSourceIMU --> E;
+    DataSourceGroundTruth --> E;
+
+    D -- "/calibration/gravity_vector" --> F;
+    DataSourceIMU --> F;
+    DataSourceGroundTruth --> F;
+    DataSourceGroundTruthAccel --> F
+
+    A -- "visualization/ground_truth_body" --> RVIZ;
+    B -- "visualization/*" --> RVIZ;
+    C -- "/visualization/ahrs_drone" --> RVIZ;
+    D -- "visualization/measured_gravity" --> RVIZ;
+    E -- "visualization/attitude_error" --> RVIZ;
+    F -- "visualization/imu_error" --> RVIZ;
+```
+
 ## 📦 Installation & Usage
 
 1.  **Prerequisites**:
